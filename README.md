@@ -20,8 +20,20 @@ sqlplus SYSTEM/oracle @sqlplus/sqlplus_example.sql example_tap
  * **example_call.sql -** An example of how to call the unit tests from a SQL statement, given the example schema has been installed as example_tap.
  * **Dockerfile -** Uses wnameless/oracle-xe-11g from Dockerhub to run sqlplus, install the TAP schema, and build a new image e.g.
 ```
-docker build -t pltap/oracle-xe-11g ./
-docker run -d -p 49160:22 -p 49161:1521 pltap/oracle-xe-11g
+Some useful instructions
+
+build instruction : 
+  docker build -t pltap/oracle-xe-21 ./  <---this one for image built 
+
+Run instructions:
+ docker run -d -p 1521:1521 -e ORACLE_PASSWORD=<your password> pltap/oracle-xe-21
+
+ docker run -d -p 1521:1521 -e ORACLE_RANDOM_PASSWORD=yes pltap/oracle-xe-21
+
+ docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle pltap/oracle-xe-21   <---use this one
+
+ docker exec -it <mycontainer> bash
+
 ```
 User defined unit tests are created in a separate database package of the users choosing.  Each test is predicated on the **ok()** function (within the pltap.tap package):
 ```
