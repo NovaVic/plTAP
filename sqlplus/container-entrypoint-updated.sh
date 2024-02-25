@@ -448,8 +448,7 @@ if healthcheck.sh "${ORACLE_SID}"; then
   echo "DATABASE IS READY TO USE!"
   echo "#########################"
   
-    
-  #run_custom_scripts "${ORACLE_BASE}"/what_to_run
+
   sqlplus -s / as sysdba @"${ORACLE_BASE}"/sqlplus_orig_scripts/sqlplus_install.sql pltap 
   sqlplus  -s / as sysdba @"${ORACLE_BASE}"/sqlplus_orig_scripts/sqlplus_example.sql example_tap 
 
